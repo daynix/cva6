@@ -64,7 +64,7 @@ module ariane_peripherals #(
     logic [ariane_soc::NumSources-1:0] irq_sources;
 
     // Unused interrupt sources
-    assign irq_sources[ariane_soc::NumSources-1:7] = '0;
+    assign irq_sources[ariane_soc::NumSources-1:11] = '0;
 
     REG_BUS #(
         .ADDR_WIDTH ( 32 ),
@@ -816,7 +816,7 @@ module ariane_peripherals #(
 
         apb_timer #(
                 .APB_ADDR_WIDTH ( 32 ),
-                .TIMER_CNT      ( 2  )
+                .TIMER_CNT      ( 4  )
         ) i_timer (
             .HCLK    ( clk_i            ),
             .HRESETn ( rst_ni           ),
@@ -828,7 +828,7 @@ module ariane_peripherals #(
             .PRDATA  ( timer_prdata     ),
             .PREADY  ( timer_pready     ),
             .PSLVERR ( timer_pslverr    ),
-            .irq_o   ( irq_sources[6:3] )
+            .irq_o   ( irq_sources[10:3] )
         );
     end
 endmodule
